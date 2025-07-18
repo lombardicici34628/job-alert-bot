@@ -10,10 +10,23 @@ def send_telegram_message(message):
     payload = {"chat_id": chat_id, "text": message, "parse_mode": "HTML"}
     requests.post(url, data=payload)
 
+
+search_terms = [
+    "QA Automation Engineer", "Test Automation Engineer", "Automation Test Engineer",
+    "SDET", "SDET – Java", "QA SDET", "Automation SDET",
+    "Senior QA Engineer", "Sr. QA Analyst", "Senior Test Engineer",
+    "Test Analyst", "QA Analyst – Automation", "Functional & Automation QA",
+    "QA Engineer – Selenium/Java", "Selenium Tester", "Java QA Engineer"
+]
+search_query = "|".join(search_terms)
+site_names = ["indeed", "linkedin", "glassdoor", "monster"]
+
+locations = "Hyderabad, Bangalore, Mumbai, Delhi"
+
 jobs = scrape_jobs(
-    site_name=["indeed"],
-    search_term="QA Automation Engineer",
-    location="Bangalore",
+    site_name=site_names,
+    search_term=search_query,
+    location=locations,
     results_wanted=20,
     hours_old=24,
     country_indeed="India"

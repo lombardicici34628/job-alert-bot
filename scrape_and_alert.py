@@ -21,7 +21,7 @@ search_terms = [
 search_query = "|".join(search_terms)
 site_names = ["indeed", "linkedin"]
 
-locations = "Hyderabad, Bangalore, Mumbai, Delhi"
+locations = "Hyderabad"
 
 jobs = scrape_jobs(
     site_name=site_names,

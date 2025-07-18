@@ -1,0 +1,5 @@
+streamlit
+python-jobspy
+pandas
+requests
+openai

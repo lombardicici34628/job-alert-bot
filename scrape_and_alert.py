@@ -19,7 +19,7 @@ search_terms = [
     "QA Engineer – Selenium/Java", "Selenium Tester", "Java QA Engineer"
 ]
 search_query = "|".join(search_terms)
-site_names = ["indeed", "linkedin", "glassdoor"]
+site_names = ["indeed", "linkedin"]
 
 locations = "Hyderabad, Bangalore, Mumbai, Delhi"
 
@@ -32,18 +32,20 @@ jobs = scrape_jobs(
     country_indeed="India"
 )
 
+print("🧪 Columns available:", list(jobs.columns))
+print("🧪 Number of jobs scraped:", len(jobs))
+
 expected_columns = ["title", "company", "location", "job_url"]
 
-# Check if jobs were scraped and expected columns are present
 if jobs.empty or not all(col in jobs.columns for col in expected_columns):
     print("❌ Job data is missing or malformed.")
-    send_telegram_message("🤖 Job Alert Bot ran but could not retrieve valid job data today.")
+    send_telegram_message("🤖 Bot ran but no valid job data was retrieved today.")
 else:
     df = jobs[expected_columns]
     filtered = df[df["title"].str.contains("QA|SDET|Selenium", case=False)]
 
     if filtered.empty:
-        send_telegram_message("🤖 Job Alert Bot ran: No matching jobs found today.")
+        send_telegram_message("🤖 No matching jobs found today.")
     else:
         for _, row in filtered.iterrows():
             msg = f"<b>{row['title']}</b> at {row['company']}\n📍 {row['location']}\n🔗 <a href='{row['job_url']}'>View Job</a>"

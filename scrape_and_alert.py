@@ -19,7 +19,7 @@ search_terms = [
     "QA Engineer – Selenium/Java", "Selenium Tester", "Java QA Engineer"
 ]
 search_query = "|".join(search_terms)
-site_names = ["indeed", "linkedin", "glassdoor", "monster"]
+site_names = ["indeed", "linkedin", "glassdoor"]
 
 locations = "Hyderabad, Bangalore, Mumbai, Delhi"
 
